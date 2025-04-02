@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrusselsExplorer - Public Parkings</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <h1>BrusselsExplorer - Public Parkings</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>Welkom bij BrusselsExplorer</h2>
+            <p>Ontdek openbare parkings in Brussel!</p>
+        </section>
+        <section id="explore">
+            <h2>Explore</h2>
+            <div id="map"></div>
+            <div id="locations">
+                <!-- Locaties worden hier weergegeven -->
+            </div>
+        </section>
+        <section id="favorites">
+            <h2>Favorites</h2>
+            <div id="favorite-locations">
+                <!-- Favoriete locaties worden hier weergegeven -->
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="javascript/script.js"></script>
+</body>
+</html>
