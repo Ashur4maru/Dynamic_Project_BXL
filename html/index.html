@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BrusselsExplorer - Public Parkings</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_rakim.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
@@ -38,10 +38,19 @@
                     <input type="number" id="capacityFilter" placeholder="Minimale capaciteit">
                     <button id="filterButton">Filter</button>
                 </div>
-                <div id="map"></div>
-                <div id="locations">
-                    <!-- Locaties worden hier weergegeven -->
-                </div>
+                    <div id="map-parking-column">
+                        <div id="map"></div>
+                            <div id="locations">
+                                <!-- Locaties worden hier weergegeven -->
+                                <h3>Parkings</h3>
+                                <ul>
+                                    <li>Parking 1 - 100 plaatsen</li>
+                                    <li>Parking 2 - 200 plaatsen</li>
+                                    <li>Parking 3 - 150 plaatsen</li>
+                                    <!-- Ajoutez d'autres parkings ici -->
+                                </ul>
+                            </div>
+                    </div>
             </div>
         </section>
     </main>

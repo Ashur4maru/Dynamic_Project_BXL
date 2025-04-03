@@ -1,0 +1,206 @@
+/* === Global Styles === */
+/* Applique des styles de base pour tout le site */
+* {
+    margin: 0; /* Supprime les marges par défaut */
+    padding: 0; /* Supprime les espacements internes par défaut */
+    box-sizing: border-box; /* Inclut les bordures et le padding dans les dimensions */
+}
+
+body {
+    font-family: "Public Sans", sans-serif; /* Police lisible et moderne */
+    font-size: 16px; /* Taille de texte par défaut */
+    line-height: 1.6; /* Espacement entre les lignes */
+    color: #333; /* Couleur principale du texte */
+    background-color: #f9f9f9; /* Couleur de fond douce */
+}
+
+/* === Header === */
+/* Style pour le header */
+header {
+    background-color: #38577C; /* Couleur de fond bleu foncé */
+    color: white; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement interne */
+    position: fixed; /* Fixe le header en haut de la page */
+    top: 0;
+    width: 100%; /* Prend toute la largeur */
+    z-index: 1000; /* Assure que le header reste au-dessus des autres éléments */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ajoute une ombre subtile */
+}
+
+/* Conteneur pour centrer le contenu */
+header .container {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center; /* Centre verticalement les éléments */
+}
+
+/* Logo */
+header .site-logo {
+    height: 40px; /* Taille du logo */
+    margin-right: 10px; /* Espacement entre le logo et le texte */
+}
+
+header .navbar-brand {
+    display: flex; /* Aligne le logo et le texte horizontalement */
+    align-items: center; /* Centre verticalement */
+    color: white; /* Couleur du texte */
+    text-decoration: none; /* Supprime le soulignement */
+    font-size: 20px; /* Taille du texte */
+    font-weight: bold; /* Texte en gras */
+}
+
+/* Navigation */
+header .navbar-nav {
+    display: flex; /* Affiche les liens en ligne */
+    gap: 20px; /* Espacement entre les liens */
+    list-style: none; /* Supprime les puces des listes */
+}
+
+header .nav-link {
+    color: white; /* Couleur des liens */
+    text-decoration: none; /* Supprime le soulignement */
+    font-size: 16px; /* Taille du texte */
+    font-weight: bold; /* Texte en gras */
+}
+
+header .nav-link:hover {
+    text-decoration: underline; /* Ajoute un soulignement au survol */
+}
+
+/* === Main Content === */
+/* Style pour le contenu principal */
+main {
+    margin-top: 80px; /* Ajoute un espace pour éviter que le contenu ne soit caché par le header */
+    padding: 20px; /* Espacement interne */
+}
+
+.section {
+    margin-bottom: 40px; /* Espacement entre les sections */
+}
+
+.section h2 {
+    font-size: 28px; /* Taille des titres */
+    color: #38577C; /* Couleur des titres */
+    margin-bottom: 20px; /* Espacement en bas */
+    text-align: center; /* Centre le titre */
+}
+
+/* === Explore Box === */
+/* Conteneur pour la section Explore */
+#explore .container {
+    background-color: #fff; /* Couleur de fond blanche */
+    border: 2px solid #ccc; /* Bordure grise */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 20px; /* Espacement interne */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+}
+
+/* === Filter Section === */
+/* Style pour la section de filtre */
+.filter {
+    display: flex; /* Affiche les éléments en ligne */
+    gap: 10px; /* Espacement entre les éléments */
+    margin-bottom: 20px; /* Espacement en bas */
+    justify-content: center; /* Centre les champs de filtre */
+}
+
+.filter input {
+    padding: 10px; /* Espacement interne */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 14px; /* Taille du texte */
+    width: 200px; /* Largeur des champs */
+}
+
+.filter button {
+    background-color: #38577C; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Supprime les bordures */
+    padding: 10px 20px; /* Espacement interne */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Change le curseur au survol */
+    font-size: 14px; /* Taille du texte */
+}
+
+.filter button:hover {
+    background-color: #7897BC; /* Couleur de fond au survol */
+}
+
+/* === Map and Parking Layout === */
+/* Conteneur pour la carte et la liste des parkings */
+#map-parking-column {
+    display: flex; /* Utilise Flexbox pour aligner la carte et la liste horizontalement */
+    gap: 20px; /* Espacement entre la carte et la liste */
+    margin-top: 20px; /* Espacement au-dessus */
+}
+
+#map {
+    height: 400px; /* Hauteur de la carte */
+    width: 60%; /* La carte occupe 60% de la largeur du conteneur */
+    border: 2px solid #333; /* Bordure autour de la carte */
+    border-radius: 5px; /* Coins arrondis */
+}
+
+#locations {
+    width: 40%; /* La liste des parkings occupe 40% de la largeur du conteneur */
+    background-color: #f1f1f1; /* Couleur de fond douce pour la liste */
+    border: 2px solid #ccc; /* Bordure grise autour de la liste */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px; /* Espacement interne */
+    overflow-y: auto; /* Ajoute un défilement vertical si le contenu dépasse */
+    max-height: 400px; /* Limite la hauteur pour correspondre à celle de la carte */
+}
+
+#locations h3 {
+    font-size: 18px; /* Taille du titre de la liste */
+    color: #38577C; /* Couleur du titre */
+    margin-bottom: 10px; /* Espacement en bas du titre */
+}
+
+#locations ul {
+    list-style: none; /* Supprime les puces des listes */
+    padding: 0; /* Supprime les marges internes */
+}
+
+#locations li {
+    margin-bottom: 10px; /* Espacement entre les éléments de la liste */
+    padding: 10px; /* Espacement interne */
+    background-color: #fff; /* Couleur de fond des éléments */
+    border: 1px solid #ddd; /* Bordure légère autour des éléments */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+}
+
+#locations li:hover {
+    background-color: #e6e6e6; /* Couleur de fond au survol */
+    cursor: pointer; /* Change le curseur au survol */
+}
+
+/* === Footer === */
+/* Style pour le footer */
+footer {
+    background-color: #38577C; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
+    padding: 10px; /* Espacement interne */
+    position: fixed; /* Fixe le footer en bas de la page */
+    bottom: 0;
+    width: 100%; /* Prend toute la largeur */
+    font-size: 14px; /* Taille du texte */
+}
+
+/* === Responsive Design === */
+/* Styles pour les petits écrans */
+@media (max-width: 768px) {
+    #map-parking-column {
+        flex-direction: column; /* Affiche la carte et la liste en colonne */
+    }
+
+    #map, #locations {
+        width: 100%; /* Chaque élément prend toute la largeur */
+    }
+
+    #locations {
+        max-height: none; /* Supprime la limite de hauteur */
+    }
+}
