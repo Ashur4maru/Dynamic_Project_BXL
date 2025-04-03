@@ -176,6 +176,51 @@ main {
     cursor: pointer; /* Change le curseur au survol */
 }
 
+/* === Parking Grid === */
+/* Conteneur pour la grille des parkings */
+.parking-grid {
+    display: grid; /* Utilise une grille CSS */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Colonnes flexibles */
+    gap: 20px; /* Espacement entre les cellules */
+    margin-top: 20px; /* Espacement au-dessus de la grille */
+}
+
+/* Style pour chaque parking dans la grille */
+.parking-item {
+    display: flex; /* Utilise Flexbox pour aligner le bouton et le texte */
+    align-items: center; /* Centre verticalement les éléments */
+    padding: 10px; /* Espacement interne */
+    background-color: #fff; /* Couleur de fond des éléments */
+    border: 1px solid #ddd; /* Bordure légère autour des éléments */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    text-align: center; /* Centre le contenu */
+}
+
+.parking-item:hover {
+    background-color: #f9f9f9; /* Couleur de fond au survol */
+}
+
+.parking-item button.add-favorite {
+    background-color: #38577C; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    border: none; /* Supprime les bordures */
+    padding: 5px 10px; /* Espacement interne */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Change le curseur au survol */
+    margin-right: 10px; /* Espacement entre le bouton et le texte */
+    font-size: 14px; /* Taille du texte */
+}
+
+.parking-item button.add-favorite:hover {
+    background-color: #7897BC; /* Couleur de fond au survol */
+}
+
+.parking-item span {
+    font-size: 16px; /* Taille du texte */
+    color: #333; /* Couleur du texte */
+}
+
 /* === Footer === */
 /* Style pour le footer */
 footer {

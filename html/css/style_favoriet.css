@@ -1,0 +1,150 @@
+/* === Global Styles === */
+/* Applique des styles de base pour tout le site */
+* {
+    margin: 0; /* Supprime les marges par défaut */
+    padding: 0; /* Supprime les espacements internes par défaut */
+    box-sizing: border-box; /* Inclut les bordures et le padding dans les dimensions */
+}
+
+body {
+    font-family: "Public Sans", sans-serif; /* Police lisible et moderne */
+    font-size: 16px; /* Taille de texte par défaut */
+    line-height: 1.6; /* Espacement entre les lignes */
+    color: #333; /* Couleur principale du texte */
+    background-color: #f9f9f9; /* Couleur de fond douce */
+}
+
+/* === Header === */
+/* Style pour le header */
+header {
+    background-color: #38577C; /* Couleur de fond bleu foncé */
+    color: white; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement interne */
+    position: fixed; /* Fixe le header en haut de la page */
+    top: 0;
+    width: 100%; /* Prend toute la largeur */
+    z-index: 1000; /* Assure que le header reste au-dessus des autres éléments */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ajoute une ombre subtile */
+}
+
+/* Conteneur pour centrer le contenu */
+header .container {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center; /* Centre verticalement les éléments */
+}
+
+header nav ul {
+    display: flex; /* Affiche les liens en ligne */
+    gap: 20px; /* Espacement entre les liens */
+    list-style: none; /* Supprime les puces des listes */
+}
+
+header nav ul li a {
+    color: white; /* Couleur des liens */
+    text-decoration: none; /* Supprime le soulignement */
+    font-size: 16px; /* Taille du texte */
+    font-weight: bold; /* Texte en gras */
+}
+
+header nav ul li a:hover {
+    text-decoration: underline; /* Ajoute un soulignement au survol */
+}
+
+/* === Main Content === */
+/* Style pour le contenu principal */
+main {
+    margin-top: 80px; /* Ajoute un espace pour éviter que le contenu ne soit caché par le header */
+    padding: 20px; /* Espacement interne */
+}
+
+.section {
+    margin-bottom: 40px; /* Espacement entre les sections */
+}
+
+.section h2 {
+    font-size: 28px; /* Taille des titres */
+    color: #38577C; /* Couleur des titres */
+    margin-bottom: 20px; /* Espacement en bas */
+    text-align: center; /* Centre le titre */
+}
+
+/* === Favorites Section === */
+/* Conteneur pour la section des favoris */
+#favorites .container {
+    background-color: #fff; /* Couleur de fond blanche */
+    border: 2px solid #ccc; /* Bordure grise */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 20px; /* Espacement interne */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+}
+
+/* Liste des favoris */
+#favorite-locations {
+    display: flex; /* Utilise Flexbox pour afficher les favoris en ligne */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+    gap: 20px; /* Espacement entre les favoris */
+    justify-content: center; /* Centre les favoris */
+}
+
+.favorite-item {
+    background-color: #f1f1f1; /* Couleur de fond douce */
+    border: 2px solid #ccc; /* Bordure grise */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 15px; /* Espacement interne */
+    width: 300px; /* Largeur fixe pour chaque favori */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    text-align: center; /* Centre le contenu */
+}
+
+.favorite-item h3 {
+    font-size: 20px; /* Taille du titre */
+    color: #38577C; /* Couleur du titre */
+    margin-bottom: 10px; /* Espacement en bas */
+}
+
+.favorite-item p {
+    font-size: 14px; /* Taille du texte */
+    color: #555; /* Couleur du texte */
+    margin-bottom: 10px; /* Espacement en bas */
+}
+
+.favorite-item button {
+    background-color: #38577C; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Supprime les bordures */
+    padding: 10px 15px; /* Espacement interne */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Change le curseur au survol */
+    font-size: 14px; /* Taille du texte */
+}
+
+.favorite-item button:hover {
+    background-color: #7897BC; /* Couleur de fond au survol */
+}
+
+/* === Footer === */
+/* Style pour le footer */
+footer {
+    background-color: #38577C; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
+    padding: 10px; /* Espacement interne */
+    position: fixed; /* Fixe le footer en bas de la page */
+    bottom: 0;
+    width: 100%; /* Prend toute la largeur */
+    font-size: 14px; /* Taille du texte */
+}
+
+/* === Responsive Design === */
+/* Styles pour les petits écrans */
+@media (max-width: 768px) {
+    #favorite-locations {
+        flex-direction: column; /* Affiche les favoris en colonne */
+        align-items: center; /* Centre les éléments */
+    }
+
+    .favorite-item {
+        width: 100%; /* Chaque favori prend toute la largeur */
+    }
+}
