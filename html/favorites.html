@@ -3,34 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrusselsExplorer - Favorite Parkings</title>
-    <link rel="stylesheet" href="css/style_favoriet.css">
+    <title>Favorieten</title>
+    <link rel="stylesheet" href="css/style_rakim.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="header-content">
-                <h1>BrusselsExplorer</h1>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#explore">Explore</a></li>
-                        <li><a href="favorites.html">Favorites</a></li>
-                    </ul>
-                </nav>
-            </div>
+            <nav class="navbar navbar-dark">
+                <a class="navbar-brand" href="#">
+                    <img src="https://www.bruxelles.be/themes/custom/vbx/favicon.svg" alt="Brussels Logo" class="site-logo">
+                    BrusselsExplorer
+                </a>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#explore">Explore</a></li>
+                    <li class="nav-item"><a class="nav-link" href="favorites.html">Favorites</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
     <main>
         <section id="favorites" class="section">
             <div class="container">
-                <h2>Favorites</h2>
-                <div id="favorite-locations">
-                    <!-- Favoriete locaties worden hier weergegeven -->
-                </div>
+                <h2>Favoriete Parkeerlocaties</h2>
+                <div id="favorite-locations"></div>
             </div>
         </section>
     </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BrusselsExplorer. Alle rechten voorbehouden.</p>
+        </div>
+    </footer>
     <script src="javascript/script.js"></script>
 </body>
 </html>

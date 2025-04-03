@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let locationsData = [];
     let markers = [];
-
     // Fetch data van de opendata.brussels API en toon locaties
     fetch('https://bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parkings_publics/records?limit=20&offset=0')
         .then(response => {
@@ -57,10 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
             locationElement.classList.add('location');
             locationElement.innerHTML = `
                 <h3>${location.name_nl}</h3>
-                <p>Adres: ${location.adres_}</p>
-                <p>Aantal plaatsen: ${location.capacity}</p>
-                <p>Operator: ${location.operator_fr}</p>
-                <p>Telefoon: ${location.contact_phone}</p>
+                <p class="adres">Adres: ${location.adres_}</p>
+                <p class="capacity">Aantal plaatsen: ${location.capacity}</p>
+                <p class="operator">Operator: ${location.operator_fr}</p>
+                <p class="phone">Telefoon: ${location.contact_phone}</p>
+                <p>handicap: ${location.disabledcapacity}</p>
+                <p><button class="favorite-button">Voeg toe aan favorieten</button></p>
             `;
             locationsContainer.appendChild(locationElement);
 
@@ -123,12 +124,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('locations').addEventListener('click', event => {
         const locationElement = event.target.closest('.location');
-        if (locationElement) {
+        if (locationElement && event.target.classList.contains('favorite-button')) {
             const locationName = locationElement.querySelector('h3').innerText;
-            if (!favoriteLocations.includes(locationName)) {
-                favoriteLocations.push(locationName);
+            const locationData = {
+                name: locationName,
+                adres: locationElement.querySelector('.adres').innerText,
+                capacity: locationElement.querySelector('.capacity').innerText,
+                operator: locationElement.querySelector('.operator').innerText,
+                phone: locationElement.querySelector('.phone').innerText
+            };
+            if (!favoriteLocations.some(location => location.name === locationName)) {
+                favoriteLocations.push(locationData);
                 localStorage.setItem('favoriteLocations', JSON.stringify(favoriteLocations));
-                updateFavoriteLocations();
+                // Stuur naar de favorietenpagina
+                window.location.href = 'favorites.html';
             }
         }
     });
@@ -140,7 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
         favoriteLocations.forEach(location => {
             const locationElement = document.createElement('div');
             locationElement.classList.add('favorite-location');
-            locationElement.innerText = location;
+            locationElement.innerHTML = `
+                <h3>${location.name}</h3>
+                <p class="adres">${location.adres}</p>
+                <p class="capacity">${location.capacity}</p>
+                <p class="operator">${location.operator}</p>
+                <p class="phone">${location.phone}</p>
+            `;
             favoriteLocationsContainer.appendChild(locationElement);
         });
     }
