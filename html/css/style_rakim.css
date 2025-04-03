@@ -1,5 +1,11 @@
 /* === Globale Stijlen === */
 /* Past basisstijlen toe voor de hele site */
+.adress {
+    font-size: 14px; /* Standaard tekstgrootte */
+    color: #333; /* Hoofdtekstkleur */
+    margin-bottom: 10px; /* Ruimte onder de adressen */
+}
+
 * {
     margin: 0; /* Verwijdert de standaard marges */
     padding: 0; /* Verwijdert de standaard opvulling */
@@ -16,7 +22,7 @@ body {
 
 /* === Koptekst === */
 /* Stijl voor de koptekst */
-header {
+header {    
     background-color: #38577C; /* Donkerblauwe achtergrondkleur */
     color: white; /* Tekstkleur */
     padding: 10px 20px; /* Interne opvulling */
@@ -143,7 +149,7 @@ main {
 
 #locations {
     width: 40%; /* De lijst met parkings neemt 40% van de breedte van de container in */
-    background-color: #f1f1f1; /* Zachte achtergrondkleur voor de lijst */
+    background-color: #dad6d6; /* Zachte achtergrondkleur voor de lijst */
     border: 2px solid #ccc; /* Grijze rand rond de lijst */
     border-radius: 5px; /* Afgeronde hoeken */
     padding: 10px; /* Interne opvulling */
@@ -190,7 +196,7 @@ main {
     display: flex; /* Gebruikt Flexbox om de knop en de tekst uit te lijnen */
     align-items: center; /* Centreert de elementen verticaal */
     padding: 10px; /* Interne opvulling */
-    background-color: white; /* Achtergrondkleur van de elementen */
+    background-color: rgb(8, 8, 8); /* Achtergrondkleur van de elementen */
     border: 1px solid #ddd; /* Lichte rand rond de elementen */
     border-radius: 5px; /* Afgeronde hoeken */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtiele schaduw */
@@ -429,15 +435,16 @@ footer {
 
 .location-item {
     padding: 15px;
-    border: 1px solid #eee;
+    border: 1px solid #000000;
     border-radius: 4px;
     margin-bottom: 10px;
-    background: white;
+    background: rgb(0, 0, 0);
+    color: black;
 }
 
 .favorite-button {
     background: #38577C;
-    color: white;
+    color: rgb(255, 249, 249);
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
@@ -449,3 +456,136 @@ footer {
     background-color: #6c757d;
     cursor: not-allowed;
 }
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Header aanpassingen */
+    .navbar-brand {
+        font-size: 18px;
+    }
+
+    .site-logo {
+        height: 30px;
+    }
+
+    /* Main content aanpassingen */
+    main {
+        margin-top: 60px;
+        padding: 10px;
+    }
+
+    /* Map en locations aanpassingen */
+    #map-parking-column {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #map {
+        height: 300px;
+    }
+
+    #locations {
+        width: 100%;
+        height: 400px;
+    }
+
+    /* Filter buttons aanpassingen */
+    .filter-buttons {
+        flex-direction: column;
+    }
+
+    .filter-buttons button {
+        width: 100%;
+    }
+
+    /* Locations list aanpassingen */
+    .location-item,
+    .favorite-item {
+        padding: 10px;
+    }
+
+    /* Text sizes */
+    h3 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small devices */
+    header {
+        padding: 5px 10px;
+    }
+
+    .navbar-nav {
+        gap: 10px;
+    }
+
+    main {
+        padding: 5px;
+    }
+
+    #map {
+        height: 250px;
+    }
+
+    #locations {
+        height: 350px;
+    }
+
+    .locations-header {
+        padding: 10px;
+    }
+
+    .filter-buttons {
+        gap: 5px;
+    }
+
+    .location-item,
+    .favorite-item {
+        margin-bottom: 5px;
+    }
+
+    /* Kleinere text voor mobile */
+    body {
+        font-size: 14px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #ffffff;
+        color: #fff;
+    }
+
+    #locations,
+    #favorite-locations,
+    .location-item,
+    .favorite-item {
+        background: #ffffff;
+        border-color: #404040;
+    }
+
+    .filter-buttons button {
+        background: #ffffff;
+    }
+
+    input {
+        background: #ffffff;
+        color: #fff;
+        border-color: #ffffff;
+    }
+   
+} 
+/* End of CSS */
