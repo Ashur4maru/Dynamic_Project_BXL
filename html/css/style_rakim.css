@@ -297,3 +297,155 @@ footer {
         grid-template-columns: 1fr; /* Toont de parkeerelementen in één kolom */
     }
 }
+
+.favorite-button {
+    background: #38577C;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.favorite-button:hover {
+    background: #2a4158;
+}
+
+.favorite-button:disabled {
+    background: #7897BC;
+    cursor: not-allowed;
+}
+
+.favorites-section {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.favorites-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.favorite-item {
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    background: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #locations {
+        width: 100%;
+        height: 500px;
+    }
+
+    .filter-buttons {
+        flex-direction: column;
+    }
+
+    .filter-buttons button {
+        width: 100%;
+    }
+}
+/* Styles voor de favorieten sectie */
+#favorite-locations {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#favorite-locations h2 {
+    color: #38577C;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.favorite-item {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.favorite-item h4 {
+    color: #38577C;
+    margin-bottom: 8px;
+}
+
+.favorite-item p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.remove-favorite {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.remove-favorite:hover {
+    background-color: #c82333;
+}
+
+/* Styles voor de locaties lijst */
+#locations {
+    width: 40%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.locations-header {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.locations-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.location-item {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background: white;
+}
+
+.favorite-button {
+    background: #38577C;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.favorite-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}

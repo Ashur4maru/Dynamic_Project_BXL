@@ -1,71 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize the map
-    const map = L.map('map').setView([50.85045, 4.34878], 13); // Centered on Brussels
+    const map = L.map('map').setView([50.85045, 4.34878], 13);
 
-    // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Add legend to the map
-    const legend = L.control({ position: 'bottomright' });
-
-    legend.onAdd = function () {
-        const div = L.DomUtil.create('div', 'legend');
-        div.innerHTML = `
-            <i style="background: blue"></i> Grote capaciteit (500+)<br>
-            <i style="background: green"></i> Gemiddelde capaciteit (100-500)<br>
-            <i style="background: red"></i> Kleine capaciteit (<100)<br>
-        `;
-        return div;
-    };
-
-    legend.addTo(map);
-
     let locationsData = [];
     let markers = [];
-    // Fetch data van de opendata.brussels API en toon locaties
-    fetch('https://bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parkings_publics/records?limit=20&offset=0')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            locationsData = data.results;
-            displayLocations(locationsData);
-        })
-        .catch(error => console.error('Error fetching data:', error));
 
-    function getColor(capacity) {
-        return capacity > 500 ? 'blue' :
-               capacity > 100 ? 'green' :
-                                'red';
+    // Functie om de locatiebox te maken
+    function createLocationBox() {
+        const locationsContainer = document.getElementById('locations');
+        locationsContainer.innerHTML = `
+            <div class="locations-header">
+                <h3>Parkeerlocaties</h3>
+            </div>
+            <div class="locations-list"></div>
+        `;
     }
 
+    // Functie om een enkele parkeerlocatie weer te geven
+    function createLocationElement(location) {
+        const element = document.createElement('div');
+        element.classList.add('location-item');
+        element.innerHTML = `
+            <h4>${location.name_nl}</h4>
+            <p class="adres">Adres: ${location.adres_}</p>
+            <p class="capacity">Aantal plaatsen: ${location.capacity}</p>
+            <p class="operator">Operator: ${location.operator_fr}</p>
+            <p class="phone">Telefoon: ${location.contact_phone}</p>
+            <p class="handicap">Handicap plaatsen: ${location.disabledcapacity}</p>
+            <button class="favorite-button" data-location='${JSON.stringify(location)}'>
+                ❤ Voeg toe aan favorieten
+            </button>
+        `;
+        return element;
+    }
+
+    // Functie om alle locaties weer te geven
     function displayLocations(data) {
-        const locationsContainer = document.getElementById('locations');
-        locationsContainer.innerHTML = '';
+        const locationsList = document.querySelector('.locations-list');
+        locationsList.innerHTML = '';
         markers.forEach(marker => map.removeLayer(marker));
         markers = [];
 
-        data.forEach(record => {
-            const location = record;
-            const locationElement = document.createElement('div');
-            locationElement.classList.add('location');
-            locationElement.innerHTML = `
-                <h3>${location.name_nl}</h3>
-                <p class="adres">Adres: ${location.adres_}</p>
-                <p class="capacity">Aantal plaatsen: ${location.capacity}</p>
-                <p class="operator">Operator: ${location.operator_fr}</p>
-                <p class="phone">Telefoon: ${location.contact_phone}</p>
-                <p>handicap: ${location.disabledcapacity}</p>
-                <p><button class="favorite-button">Voeg toe aan favorieten</button></p>
-            `;
-            locationsContainer.appendChild(locationElement);
+        data.forEach(location => {
+            const locationElement = createLocationElement(location);
+            locationsList.appendChild(locationElement);
 
-            // Add marker to the map
             const marker = L.circleMarker([location.geo_point_2d.lat, location.geo_point_2d.lon], {
                 color: getColor(location.capacity),
                 radius: 8,
@@ -76,92 +59,117 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>${location.name_nl}</h3>
                 <p>Adres: ${location.adres_}</p>
                 <p>Aantal plaatsen: ${location.capacity}</p>
-                <p>Operator: ${location.operator_fr}</p>
-                <p>Telefoon: ${location.contact_phone}</p>
             `);
 
             markers.push(marker);
         });
     }
 
-    // Filter locations by name
+    // Functie om een favoriet toe te voegen aan de lijst
+    function addToFavorites(location) {
+        const favoritesList = document.getElementById('favorite-locations');
+        const favoriteItem = document.createElement('div');
+        favoriteItem.classList.add('favorite-item');
+        favoriteItem.innerHTML = `
+            <h4>${location.name_nl}</h4>
+            <p class="adres">Adres: ${location.adres_}</p>
+            <p class="capacity">Aantal plaatsen: ${location.capacity}</p>
+            <p class="operator">Operator: ${location.operator_fr}</p>
+            <p class="phone">Telefoon: ${location.contact_phone}</p>
+            <button class="remove-favorite" data-name="${location.name_nl}">
+                🗑️ Verwijder uit favorieten
+            </button>
+        `;
+        favoritesList.appendChild(favoriteItem);
+
+        // Sla favorieten op in localStorage
+        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        favorites.push(location);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+
+    function getColor(capacity) {
+        return capacity > 500 ? 'blue' :
+               capacity > 100 ? 'green' :
+                              'red';
+    }
+
+    // Initialiseer de locatiebox
+    createLocationBox();
+
+    // Laad opgeslagen favorieten
+    function loadFavorites() {
+        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        favorites.forEach(location => addToFavorites(location));
+    }
+
+    // Event listeners voor filters
     document.getElementById('filterButton').addEventListener('click', () => {
         const searchQuery = document.getElementById('search').value.toLowerCase();
-
-        const filteredData = locationsData.filter(location => {
-            return location.name_nl.toLowerCase().includes(searchQuery);
-        });
-
+        const filteredData = locationsData.filter(location => 
+            location.name_nl.toLowerCase().includes(searchQuery)
+        );
         displayLocations(filteredData);
     });
 
-    // Sort locations alphabetically
-    document.getElementById('alfabetisch').addEventListener('click', () => {
-        const sortedData = [...locationsData].sort((a, b) => {
-            return a.name_nl.localeCompare(b.name_nl);
-        });
-
-        displayLocations(sortedData);
-    });
-
-    // Variabele om de sorteervolgorde bij te houden (true = aflopend, false = oplopend)
     let isCapacityDescending = true;
-
-    // Sort locations by capacity (toggle between descending and ascending)
     document.getElementById('capaciteit').addEventListener('click', () => {
         const sortedData = [...locationsData].sort((a, b) => {
             return isCapacityDescending ? b.capacity - a.capacity : a.capacity - b.capacity;
         });
-
-        // Keren de sorteervolgorde om voor de volgende klik
         isCapacityDescending = !isCapacityDescending;
-
         displayLocations(sortedData);
     });
 
-    // Voeg interactiviteit toe voor het opslaan van favorieten
-    const favoriteLocations = JSON.parse(localStorage.getItem('favoriteLocations')) || [];
+    document.getElementById('alfabetisch').addEventListener('click', () => {
+        const sortedData = [...locationsData].sort((a, b) => 
+            a.name_nl.localeCompare(b.name_nl)
+        );
+        displayLocations(sortedData);
+    });
 
-    document.getElementById('locations').addEventListener('click', event => {
-        const locationElement = event.target.closest('.location');
-        if (locationElement && event.target.classList.contains('favorite-button')) {
-            const locationName = locationElement.querySelector('h3').innerText;
-            const locationData = {
-                name: locationName,
-                adres: locationElement.querySelector('.adres').innerText,
-                capacity: locationElement.querySelector('.capacity').innerText,
-                operator: locationElement.querySelector('.operator').innerText,
-                phone: locationElement.querySelector('.phone').innerText
-            };
-            if (!favoriteLocations.some(location => location.name === locationName)) {
-                favoriteLocations.push(locationData);
-                localStorage.setItem('favoriteLocations', JSON.stringify(favoriteLocations));
-                // Stuur naar de favorietenpagina
-                window.location.href = 'favorites.html';
+    // Event listener voor favorieten toevoegen
+    document.querySelector('.locations-list').addEventListener('click', event => {
+        if (event.target.classList.contains('favorite-button')) {
+            const locationData = JSON.parse(event.target.dataset.location);
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            
+            if (!favorites.some(fav => fav.name_nl === locationData.name_nl)) {
+                addToFavorites(locationData);
+                event.target.textContent = '✓ Toegevoegd aan favorieten';
+                event.target.disabled = true;
             }
         }
     });
 
-    function updateFavoriteLocations() {
-        const favoriteLocationsContainer = document.getElementById('favorite-locations');
-        const favoriteLocations = JSON.parse(localStorage.getItem('favoriteLocations')) || [];
-        favoriteLocationsContainer.innerHTML = '';
-        favoriteLocations.forEach(location => {
-            const locationElement = document.createElement('div');
-            locationElement.classList.add('favorite-location');
-            locationElement.innerHTML = `
-                <h3>${location.name}</h3>
-                <p class="adres">${location.adres}</p>
-                <p class="capacity">${location.capacity}</p>
-                <p class="operator">${location.operator}</p>
-                <p class="phone">${location.phone}</p>
-            `;
-            favoriteLocationsContainer.appendChild(locationElement);
-        });
-    }
+    // Event listener voor favorieten verwijderen
+    document.getElementById('favorite-locations').addEventListener('click', event => {
+        if (event.target.classList.contains('remove-favorite')) {
+            const name = event.target.dataset.name;
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const updatedFavorites = favorites.filter(fav => fav.name_nl !== name);
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            event.target.closest('.favorite-item').remove();
 
-    // Initialiseer favorieten bij het laden van de pagina
-    if (window.location.pathname.includes('favorites.html')) {
-        updateFavoriteLocations();
-    }
+            // Enable de "Voeg toe aan favorieten" knop weer
+            const addButton = document.querySelector(`.favorite-button[data-location*="${name}"]`);
+            if (addButton) {
+                addButton.textContent = '❤ Voeg toe aan favorieten';
+                addButton.disabled = false;
+            }
+        }
+    });
+
+    // Haal de data op en toon deze
+    fetch('https://bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parkings_publics/records?limit=20&offset=0')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            locationsData = data.results;
+            displayLocations(locationsData);
+            loadFavorites(); // Laad opgeslagen favorieten
+        })
+        .catch(error => console.error('Error:', error));
 });
