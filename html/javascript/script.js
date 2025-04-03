@@ -77,19 +77,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Filter locations by name and capacity
-    document.getElementById('filterButton').addEventListener('click', () => {
-        const searchQuery = document.getElementById('search').value.toLowerCase();
-        const capacityFilter = document.getElementById('capacityFilter').value;
+    // Filter locations by name
+document.getElementById('filterButton').addEventListener('click', () => {
+    const searchQuery = document.getElementById('search').value.toLowerCase();
 
-        const filteredData = locationsData.filter(location => {
-            const matchesName = location.name_nl.toLowerCase().includes(searchQuery);
-            const matchesCapacity = capacityFilter ? location.capacity >= capacityFilter : true;
-            return matchesName && matchesCapacity;
-        });
-
-        displayLocations(filteredData);
+    const filteredData = locationsData.filter(location => {
+        return location.name_nl.toLowerCase().includes(searchQuery);
     });
+
+    displayLocations(filteredData);
+});
+
+// Sort locations alphabetically
+document.getElementById('alfabetisch').addEventListener('click', () => {
+    const sortedData = [...locationsData].sort((a, b) => {
+        return a.name_nl.localeCompare(b.name_nl);
+    });
+
+    displayLocations(sortedData);
+});
+
+// Variable pour suivre l'état du tri (true = décroissant, false = croissant)
+let isCapacityDescending = true;
+
+// Sort locations by capacity (toggle between descending and ascending)
+document.getElementById('capaciteit').addEventListener('click', () => {
+    const sortedData = [...locationsData].sort((a, b) => {
+        return isCapacityDescending ? b.capacity - a.capacity : a.capacity - b.capacity;
+    });
+
+    // Inverse l'état du tri pour le prochain clic
+    isCapacityDescending = !isCapacityDescending;
+
+    displayLocations(sortedData);
+});
 
     // Voeg interactiviteit toe voor het opslaan van favorieten
     const favoriteLocations = JSON.parse(localStorage.getItem('favoriteLocations')) || [];

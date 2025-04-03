@@ -101,7 +101,7 @@ main {
     display: flex; /* Affiche les éléments en ligne */
     gap: 10px; /* Espacement entre les éléments */
     margin-bottom: 20px; /* Espacement en bas */
-    justify-content: center; /* Centre les champs de filtre */
+    justify-content: flex-end; /* Centre les champs de filtre */
 }
 
 .filter input {
