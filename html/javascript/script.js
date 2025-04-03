@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     legend.addTo(map);
 
     let locationsData = [];
+    let markers = [];
 
     // Fetch data van de opendata.brussels API en toon locaties
     fetch('https://bruxellesdata.opendatasoft.com/api/explore/v2.1/catalog/datasets/bruxelles_parkings_publics/records?limit=20&offset=0')
@@ -47,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayLocations(data) {
         const locationsContainer = document.getElementById('locations');
         locationsContainer.innerHTML = '';
+        markers.forEach(marker => map.removeLayer(marker));
+        markers = [];
+
         data.forEach(record => {
             const location = record;
             const locationElement = document.createElement('div');
@@ -74,43 +78,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>Operator: ${location.operator_fr}</p>
                 <p>Telefoon: ${location.contact_phone}</p>
             `);
+
+            markers.push(marker);
         });
     }
 
     // Filter locations by name
-document.getElementById('filterButton').addEventListener('click', () => {
-    const searchQuery = document.getElementById('search').value.toLowerCase();
+    document.getElementById('filterButton').addEventListener('click', () => {
+        const searchQuery = document.getElementById('search').value.toLowerCase();
 
-    const filteredData = locationsData.filter(location => {
-        return location.name_nl.toLowerCase().includes(searchQuery);
+        const filteredData = locationsData.filter(location => {
+            return location.name_nl.toLowerCase().includes(searchQuery);
+        });
+
+        displayLocations(filteredData);
     });
 
-    displayLocations(filteredData);
-});
+    // Sort locations alphabetically
+    document.getElementById('alfabetisch').addEventListener('click', () => {
+        const sortedData = [...locationsData].sort((a, b) => {
+            return a.name_nl.localeCompare(b.name_nl);
+        });
 
-// Sort locations alphabetically
-document.getElementById('alfabetisch').addEventListener('click', () => {
-    const sortedData = [...locationsData].sort((a, b) => {
-        return a.name_nl.localeCompare(b.name_nl);
+        displayLocations(sortedData);
     });
 
-    displayLocations(sortedData);
-});
+    // Variabele om de sorteervolgorde bij te houden (true = aflopend, false = oplopend)
+    let isCapacityDescending = true;
 
-// Variable pour suivre l'état du tri (true = décroissant, false = croissant)
-let isCapacityDescending = true;
+    // Sort locations by capacity (toggle between descending and ascending)
+    document.getElementById('capaciteit').addEventListener('click', () => {
+        const sortedData = [...locationsData].sort((a, b) => {
+            return isCapacityDescending ? b.capacity - a.capacity : a.capacity - b.capacity;
+        });
 
-// Sort locations by capacity (toggle between descending and ascending)
-document.getElementById('capaciteit').addEventListener('click', () => {
-    const sortedData = [...locationsData].sort((a, b) => {
-        return isCapacityDescending ? b.capacity - a.capacity : a.capacity - b.capacity;
+        // Keren de sorteervolgorde om voor de volgende klik
+        isCapacityDescending = !isCapacityDescending;
+
+        displayLocations(sortedData);
     });
-
-    // Inverse l'état du tri pour le prochain clic
-    isCapacityDescending = !isCapacityDescending;
-
-    displayLocations(sortedData);
-});
 
     // Voeg interactiviteit toe voor het opslaan van favorieten
     const favoriteLocations = JSON.parse(localStorage.getItem('favoriteLocations')) || [];

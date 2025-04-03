@@ -1,251 +1,299 @@
-/* === Global Styles === */
-/* Applique des styles de base pour tout le site */
+/* === Globale Stijlen === */
+/* Past basisstijlen toe voor de hele site */
 * {
-    margin: 0; /* Supprime les marges par défaut */
-    padding: 0; /* Supprime les espacements internes par défaut */
-    box-sizing: border-box; /* Inclut les bordures et le padding dans les dimensions */
+    margin: 0; /* Verwijdert de standaard marges */
+    padding: 0; /* Verwijdert de standaard opvulling */
+    box-sizing: border-box; /* Inclusief randen en opvulling in de afmetingen */
 }
 
 body {
-    font-family: "Public Sans", sans-serif; /* Police lisible et moderne */
-    font-size: 16px; /* Taille de texte par défaut */
-    line-height: 1.6; /* Espacement entre les lignes */
-    color: #333; /* Couleur principale du texte */
-    background-color: #f9f9f9; /* Couleur de fond douce */
+    font-family: "Public Sans", sans-serif; /* Leesbaar en modern lettertype */
+    font-size: 16px; /* Standaard tekstgrootte */
+    line-height: 1.6; /* Regelafstand */
+    color: #333; /* Hoofdtekstkleur */
+    background-color: #f9f9f9; /* Zachte achtergrondkleur */
 }
 
-/* === Header === */
-/* Style pour le header */
+/* === Koptekst === */
+/* Stijl voor de koptekst */
 header {
-    background-color: #38577C; /* Couleur de fond bleu foncé */
-    color: white; /* Couleur du texte */
-    padding: 10px 20px; /* Espacement interne */
-    position: fixed; /* Fixe le header en haut de la page */
+    background-color: #38577C; /* Donkerblauwe achtergrondkleur */
+    color: white; /* Tekstkleur */
+    padding: 10px 20px; /* Interne opvulling */
+    position: fixed; /* Zet de koptekst bovenaan de pagina vast */
     top: 0;
-    width: 100%; /* Prend toute la largeur */
-    z-index: 1000; /* Assure que le header reste au-dessus des autres éléments */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ajoute une ombre subtile */
+    width: 100%; /* Neemt de volledige breedte in */
+    z-index: 1000; /* Zorgt ervoor dat de koptekst boven andere elementen blijft */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Voegt een subtiele schaduw toe */
 }
 
-/* Conteneur pour centrer le contenu */
+/* Container om de inhoud te centreren */
 header .container {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
-    justify-content: space-between; /* Espace entre les éléments */
-    align-items: center; /* Centre verticalement les éléments */
+    display: flex; /* Gebruikt Flexbox om de elementen uit te lijnen */
+    justify-content: space-between; /* Ruimte tussen de elementen */
+    align-items: center; /* Centreert de elementen verticaal */
 }
 
 /* Logo */
 header .site-logo {
-    height: 40px; /* Taille du logo */
-    margin-right: 10px; /* Espacement entre le logo et le texte */
+    height: 40px; /* Grootte van het logo */
+    margin-right: 10px; /* Ruimte tussen het logo en de tekst */
 }
 
 header .navbar-brand {
-    display: flex; /* Aligne le logo et le texte horizontalement */
-    align-items: center; /* Centre verticalement */
-    color: white; /* Couleur du texte */
-    text-decoration: none; /* Supprime le soulignement */
-    font-size: 20px; /* Taille du texte */
-    font-weight: bold; /* Texte en gras */
+    display: flex; /* Lijnt het logo en de tekst horizontaal uit */
+    align-items: center; /* Centreert verticaal */
+    color: white; /* Tekstkleur */
+    text-decoration: none; /* Verwijdert de onderstreping */
+    font-size: 20px; /* Tekstgrootte */
+    font-weight: bold; /* Vette tekst */
 }
 
-/* Navigation */
+/* Navigatie */
 header .navbar-nav {
-    display: flex; /* Affiche les liens en ligne */
-    gap: 20px; /* Espacement entre les liens */
-    list-style: none; /* Supprime les puces des listes */
+    display: flex; /* Toont de links in een lijn */
+    gap: 20px; /* Ruimte tussen de links */
+    list-style: none; /* Verwijdert de opsommingstekens van lijsten */
 }
 
 header .nav-link {
-    color: white; /* Couleur des liens */
-    text-decoration: none; /* Supprime le soulignement */
-    font-size: 16px; /* Taille du texte */
-    font-weight: bold; /* Texte en gras */
+    color: white; /* Kleur van de links */
+    text-decoration: none; /* Verwijdert de onderstreping */
+    font-size: 16px; /* Tekstgrootte */
+    font-weight: bold; /* Vette tekst */
 }
 
 header .nav-link:hover {
-    text-decoration: underline; /* Ajoute un soulignement au survol */
+    text-decoration: underline; /* Voegt een onderstreping toe bij hover */
 }
 
-/* === Main Content === */
-/* Style pour le contenu principal */
+/* === Hoofdinhoud === */
+/* Stijl voor de hoofdinhoud */
 main {
-    margin-top: 80px; /* Ajoute un espace pour éviter que le contenu ne soit caché par le header */
-    padding: 20px; /* Espacement interne */
+    margin-top: 80px; /* Voegt ruimte toe om te voorkomen dat de inhoud wordt verborgen door de koptekst */
+    padding: 20px; /* Interne opvulling */
 }
 
 .section {
-    margin-bottom: 40px; /* Espacement entre les sections */
+    margin-bottom: 40px; /* Ruimte tussen de secties */
 }
 
 .section h2 {
-    font-size: 28px; /* Taille des titres */
-    color: #38577C; /* Couleur des titres */
-    margin-bottom: 20px; /* Espacement en bas */
-    text-align: center; /* Centre le titre */
+    font-size: 28px; /* Grootte van de titels */
+    color: #38577C; /* Kleur van de titels */
+    margin-bottom: 20px; /* Ruimte onderaan */
+    text-align: center; /* Centreert de titel */
 }
 
-/* === Explore Box === */
-/* Conteneur pour la section Explore */
+/* === Verken Box === */
+/* Container voor de Verken sectie */
 #explore .container {
-    background-color: #fff; /* Couleur de fond blanche */
-    border: 2px solid #ccc; /* Bordure grise */
-    border-radius: 10px; /* Coins arrondis */
-    padding: 20px; /* Espacement interne */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    background-color: white; /* Witte achtergrondkleur */
+    border: 2px solid #ccc; /* Grijze rand */
+    border-radius: 10px; /* Afgeronde hoeken */
+    padding: 20px; /* Interne opvulling */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtiele schaduw */
 }
 
-/* === Filter Section === */
-/* Style pour la section de filtre */
+/* === Filtersectie === */
+/* Stijl voor de filtersectie */
 .filter {
-    display: flex; /* Affiche les éléments en ligne */
-    gap: 10px; /* Espacement entre les éléments */
-    margin-bottom: 20px; /* Espacement en bas */
-    justify-content: flex-end; /* Centre les champs de filtre */
+    display: flex; /* Toont de elementen in een lijn */
+    gap: 10px; /* Ruimte tussen de elementen */
+    margin-bottom: 20px; /* Ruimte onderaan */
+    justify-content: flex-end; /* Centreert de filtervelden */
 }
 
 .filter input {
-    padding: 10px; /* Espacement interne */
-    border: 1px solid #ccc; /* Bordure grise */
-    border-radius: 5px; /* Coins arrondis */
-    font-size: 14px; /* Taille du texte */
-    width: 200px; /* Largeur des champs */
+    padding: 10px; /* Interne opvulling */
+    border: 1px solid #ccc; /* Grijze rand */
+    border-radius: 5px; /* Afgeronde hoeken */
+    font-size: 14px; /* Tekstgrootte */
+    width: 200px; /* Breedte van de velden */
 }
 
 .filter button {
-    background-color: #38577C; /* Couleur de fond */
-    color: white; /* Couleur du texte */
-    border: none; /* Supprime les bordures */
-    padding: 10px 20px; /* Espacement interne */
-    border-radius: 5px; /* Coins arrondis */
-    cursor: pointer; /* Change le curseur au survol */
-    font-size: 14px; /* Taille du texte */
+    background-color: #38577C; /* Achtergrondkleur */
+    color: white; /* Tekstkleur */
+    border: none; /* Verwijdert de rand */
+    padding: 10px 20px; /* Interne opvulling */
+    border-radius: 5px; /* Afgeronde hoeken */
+    cursor: pointer; /* Verandert de cursor bij hover */
+    font-size: 14px; /* Tekstgrootte */
 }
 
 .filter button:hover {
-    background-color: #7897BC; /* Couleur de fond au survol */
+    background-color: #7897BC; /* Achtergrondkleur bij hover */
 }
 
-/* === Map and Parking Layout === */
-/* Conteneur pour la carte et la liste des parkings */
+/* === Kaart en Parking Layout === */
+/* Container voor de kaart en de lijst met parkings */
 #map-parking-column {
-    display: flex; /* Utilise Flexbox pour aligner la carte et la liste horizontalement */
-    gap: 20px; /* Espacement entre la carte et la liste */
-    margin-top: 20px; /* Espacement au-dessus */
+    display: flex; /* Gebruikt Flexbox om de kaart en de lijst horizontaal uit te lijnen */
+    gap: 20px; /* Ruimte tussen de kaart en de lijst */
+    margin-top: 20px; /* Ruimte bovenaan */
 }
 
 #map {
-    height: 400px; /* Hauteur de la carte */
-    width: 60%; /* La carte occupe 60% de la largeur du conteneur */
-    border: 2px solid #333; /* Bordure autour de la carte */
-    border-radius: 5px; /* Coins arrondis */
+    height: 400px; /* Hoogte van de kaart */
+    width: 60%; /* De kaart neemt 60% van de breedte van de container in */
+    border: 2px solid #333; /* Rand rond de kaart */
+    border-radius: 5px; /* Afgeronde hoeken */
 }
 
 #locations {
-    width: 40%; /* La liste des parkings occupe 40% de la largeur du conteneur */
-    background-color: #f1f1f1; /* Couleur de fond douce pour la liste */
-    border: 2px solid #ccc; /* Bordure grise autour de la liste */
-    border-radius: 5px; /* Coins arrondis */
-    padding: 10px; /* Espacement interne */
-    overflow-y: auto; /* Ajoute un défilement vertical si le contenu dépasse */
-    max-height: 400px; /* Limite la hauteur pour correspondre à celle de la carte */
+    width: 40%; /* De lijst met parkings neemt 40% van de breedte van de container in */
+    background-color: #f1f1f1; /* Zachte achtergrondkleur voor de lijst */
+    border: 2px solid #ccc; /* Grijze rand rond de lijst */
+    border-radius: 5px; /* Afgeronde hoeken */
+    padding: 10px; /* Interne opvulling */
+    overflow-y: auto; /* Voegt een verticale scroll toe als de inhoud te groot is */
+    max-height: 400px; /* Beperkt de hoogte om overeen te komen met die van de kaart */
 }
 
 #locations h3 {
-    font-size: 18px; /* Taille du titre de la liste */
-    color: #38577C; /* Couleur du titre */
-    margin-bottom: 10px; /* Espacement en bas du titre */
+    font-size: 18px; /* Grootte van de titel van de lijst */
+    color: #38577C; /* Kleur van de titel */
+    margin-bottom: 10px; /* Ruimte onderaan de titel */
 }
 
 #locations ul {
-    list-style: none; /* Supprime les puces des listes */
-    padding: 0; /* Supprime les marges internes */
+    list-style: none; /* Verwijdert de opsommingstekens van lijsten */
+    padding: 0; /* Verwijdert de interne opvulling */
 }
 
 #locations li {
-    margin-bottom: 10px; /* Espacement entre les éléments de la liste */
-    padding: 10px; /* Espacement interne */
-    background-color: #fff; /* Couleur de fond des éléments */
-    border: 1px solid #ddd; /* Bordure légère autour des éléments */
-    border-radius: 5px; /* Coins arrondis */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    margin-bottom: 10px; /* Ruimte tussen de elementen van de lijst */
+    padding: 10px; /* Interne opvulling */
+    background-color: white; /* Achtergrondkleur van de elementen */
+    border: 1px solid #ddd; /* Lichte rand rond de elementen */
+    border-radius: 5px; /* Afgeronde hoeken */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtiele schaduw */
 }
 
 #locations li:hover {
-    background-color: #e6e6e6; /* Couleur de fond au survol */
-    cursor: pointer; /* Change le curseur au survol */
+    background-color: #e6e6e6; /* Achtergrondkleur bij hover */
+    cursor: pointer; /* Verandert de cursor bij hover */
 }
 
 /* === Parking Grid === */
-/* Conteneur pour la grille des parkings */
+/* Container voor het raster van parkings */
 .parking-grid {
-    display: grid; /* Utilise une grille CSS */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Colonnes flexibles */
-    gap: 20px; /* Espacement entre les cellules */
-    margin-top: 20px; /* Espacement au-dessus de la grille */
+    display: grid; /* Gebruikt een CSS-raster */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Flexibele kolommen */
+    gap: 20px; /* Ruimte tussen de cellen */
+    margin-top: 20px; /* Ruimte boven het raster */
 }
 
-/* Style pour chaque parking dans la grille */
+/* Stijl voor elke parking in het raster */
 .parking-item {
-    display: flex; /* Utilise Flexbox pour aligner le bouton et le texte */
-    align-items: center; /* Centre verticalement les éléments */
-    padding: 10px; /* Espacement interne */
-    background-color: #fff; /* Couleur de fond des éléments */
-    border: 1px solid #ddd; /* Bordure légère autour des éléments */
-    border-radius: 5px; /* Coins arrondis */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre subtile */
-    text-align: center; /* Centre le contenu */
+    display: flex; /* Gebruikt Flexbox om de knop en de tekst uit te lijnen */
+    align-items: center; /* Centreert de elementen verticaal */
+    padding: 10px; /* Interne opvulling */
+    background-color: white; /* Achtergrondkleur van de elementen */
+    border: 1px solid #ddd; /* Lichte rand rond de elementen */
+    border-radius: 5px; /* Afgeronde hoeken */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtiele schaduw */
+    text-align: center; /* Centreert de inhoud */
 }
 
 .parking-item:hover {
-    background-color: #f9f9f9; /* Couleur de fond au survol */
+    background-color: #f9f9f9; /* Achtergrondkleur bij hover */
 }
 
 .parking-item button.add-favorite {
-    background-color: #38577C; /* Couleur de fond du bouton */
-    color: white; /* Couleur du texte */
-    border: none; /* Supprime les bordures */
-    padding: 5px 10px; /* Espacement interne */
-    border-radius: 5px; /* Coins arrondis */
-    cursor: pointer; /* Change le curseur au survol */
-    margin-right: 10px; /* Espacement entre le bouton et le texte */
-    font-size: 14px; /* Taille du texte */
+    background-color: #38577C; /* Achtergrondkleur van de knop */
+    color: white; /* Tekstkleur */
+    border: none; /* Verwijdert de rand */
+    padding: 5px 10px; /* Interne opvulling */
+    border-radius: 5px; /* Afgeronde hoeken */
+    cursor: pointer; /* Verandert de cursor bij hover */
+    margin-right: 10px; /* Ruimte tussen de knop en de tekst */
+    font-size: 14px; /* Tekstgrootte */
 }
 
 .parking-item button.add-favorite:hover {
-    background-color: #7897BC; /* Couleur de fond au survol */
+    background-color: #7897BC; /* Achtergrondkleur bij hover */
 }
 
 .parking-item span {
-    font-size: 16px; /* Taille du texte */
-    color: #333; /* Couleur du texte */
+    font-size: 16px; /* Tekstgrootte */
+    color: #333; /* Tekstkleur */
 }
 
-/* === Footer === */
-/* Style pour le footer */
+/* === Voettekst === */
+/* Stijl voor de voettekst */
 footer {
-    background-color: #38577C; /* Couleur de fond */
-    color: white; /* Couleur du texte */
-    text-align: center; /* Centre le texte */
-    padding: 10px; /* Espacement interne */
-    position: fixed; /* Fixe le footer en bas de la page */
+    background-color: #38577C; /* Achtergrondkleur */
+    color: white; /* Tekstkleur */
+    text-align: center; /* Centreert de tekst */
+    padding: 10px; /* Interne opvulling */
+    position: fixed; /* Zet de voettekst onderaan de pagina vast */
     bottom: 0;
-    width: 100%; /* Prend toute la largeur */
-    font-size: 14px; /* Taille du texte */
+    width: 100%; /* Neemt de volledige breedte in */
+    font-size: 14px; /* Tekstgrootte */
 }
 
-/* === Responsive Design === */
-/* Styles pour les petits écrans */
+/* === Responsief Ontwerp === */
+/* Stijlen voor kleine schermen */
 @media (max-width: 768px) {
     #map-parking-column {
-        flex-direction: column; /* Affiche la carte et la liste en colonne */
+        flex-direction: column; /* Toont de kaart en de lijst in een kolom */
     }
 
     #map, #locations {
-        width: 100%; /* Chaque élément prend toute la largeur */
+        width: 100%; /* Elk element neemt de volledige breedte in */
     }
 
     #locations {
-        max-height: none; /* Supprime la limite de hauteur */
+        max-height: none; /* Verwijdert de hoogtebeperking */
+    }
+}
+
+/* Stijlen voor telefoonschermen */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px; /* Verkleint de tekstgrootte voor telefoons */
+    }
+
+    header {
+        padding: 10px; /* Vermindert de interne opvulling */
+    }
+
+    header .navbar-brand {
+        font-size: 18px; /* Verkleint de tekstgrootte van het merk */
+    }
+
+    header .nav-link {
+        font-size: 14px; /* Verkleint de tekstgrootte van de links */
+    }
+
+    main {
+        padding: 10px; /* Vermindert de interne opvulling */
+    }
+
+    .section h2 {
+        font-size: 24px; /* Verkleint de tekstgrootte van de titels */
+    }
+
+    .filter input {
+        width: 100%; /* Laat de inputvelden de volledige breedte innemen */
+    }
+
+    .filter {
+        flex-direction: column; /* Zet de filtervelden onder elkaar */
+        align-items: flex-start; /* Lijnt de filtervelden links uit */
+    }
+
+    #map {
+        height: 300px; /* Verkleint de hoogte van de kaart */
+    }
+
+    #locations {
+        max-height: 300px; /* Beperkt de hoogte van de lijst met parkings */
+    }
+
+    .parking-grid {
+        grid-template-columns: 1fr; /* Toont de parkeerelementen in één kolom */
     }
 }
