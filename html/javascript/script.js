@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="capacity">Aantal plaatsen: ${location.capacity}</p>
             <p class="operator">Operator: ${location.operator_fr}</p>
             <p class="phone">Telefoon: ${location.contact_phone}</p>
+            <p class="handicap">Handicap plaatsen: ${location.disabledcapacity}</p>
             <button class="remove-favorite" data-name="${location.name_nl}">
                 🗑️ Verwijder uit favorieten
             </button>
