@@ -3,38 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorieten</title>
+    <meta name="description" content="Jouw favoriete parkeerlocaties in Brussel">
+    <meta name="keywords" content="Brussels, parking, parkeren, Brussel, favorieten">
+    <meta name="author" content="Dalil Belahcen & Rakim Benkirane - EHB">
+    
+    <title>Favorieten - BrusselsExplorer</title>
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/favorites-style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://www.bruxelles.be/themes/custom/vbx/favicon.svg" type="image/svg+xml">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#38577C">
 </head>
 <body>
-    <header>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link sr-only">Ga naar hoofdinhoud</a>
+    
+    <header role="banner">
         <div class="container">
-            <nav class="navbar navbar-dark">
-                <a class="navbar-brand" href="#">
-                    <img src="https://www.bruxelles.be/themes/custom/vbx/favicon.svg" alt="Brussels Logo" class="site-logo">
-                    BrusselsExplorer
+            <nav class="navbar" role="navigation" aria-label="Hoofdnavigatie">
+                <a class="navbar-brand" href="index.html" aria-label="BrusselsExplorer homepage">
+                    <img src="https://www.bruxelles.be/themes/custom/vbx/favicon.svg" 
+                         alt="Brussels Logo" 
+                         class="site-logo"
+                         width="40" 
+                         height="40">
+                    <span>BrusselsExplorer</span>
                 </a>
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#explore">Explore</a></li>
-                    <li class="nav-item"><a class="nav-link" href="favorites.html">Favorites</a></li>
+                <ul class="navbar-nav" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="index.html" role="menuitem">Home</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="index.html#explore" role="menuitem">Verken</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="index.html#favorites" role="menuitem">Favorieten</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link active" href="favorites.html" role="menuitem" aria-current="page">Favorieten Pagina</a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
-    <main>
-        <section id="favorites" class="section">
+
+    <main id="main-content" role="main">
+        <!-- Breadcrumb Navigation -->
+        <section class="breadcrumb-section">
             <div class="container">
-                <h2>Favoriete Parkeerlocaties</h2>
-                <div id="favorite-locations"></div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Mijn Favorieten
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Favorites Section -->
+        <section id="favorites" class="section" aria-labelledby="favorites-title">
+            <div class="container">
+                <div class="page-header">
+                    <h1 id="favorites-title">Mijn Favoriete Parkeerlocaties</h1>
+                    <p class="page-description">
+                        Hier vind je al je opgeslagen favoriete parkeerlocaties in Brussel. 
+                        Je kunt ze beheren, routebeschrijvingen opvragen en je lijst exporteren.
+                    </p>
+                </div>
+                
+                <!-- Favorites Content -->
+                <div id="favorite-locations" 
+                     role="region" 
+                     aria-live="polite" 
+                     aria-labelledby="favorites-title">
+                    <!-- Content will be dynamically loaded by JavaScript -->
+                    <div class="loading-favorites">
+                        <div class="loading-spinner"></div>
+                        <p>Favorieten worden geladen...</p>
+                    </div>
+                </div>
+
+                <!-- Help Section -->
+                <div class="help-section">
+                    <h2>💡 Tips voor je favorieten</h2>
+                    <div class="tips-grid">
+                        <div class="tip-item">
+                            <h3>🗺️ Routebeschrijving</h3>
+                            <p>Klik op "Toon routebeschrijving" om Google Maps te openen met directies naar de parkeerlocatie.</p>
+                        </div>
+                        <div class="tip-item">
+                            <h3>📋 Adres kopiëren</h3>
+                            <p>Gebruik de "Kopieer adres" knop om het adres snel te delen of in andere apps te gebruiken.</p>
+                        </div>
+                        <div class="tip-item">
+                            <h3>📤 Exporteren</h3>
+                            <p>Exporteer je favorieten als CSV bestand om ze te delen of als backup te bewaren.</p>
+                        </div>
+                        <div class="tip-item">
+                            <h3>📝 Sorteren</h3>
+                            <p>Sorteer je favorieten op naam of capaciteit om snel te vinden wat je zoekt.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back to Explore -->
+                <div class="back-to-explore">
+                    <a href="index.html#explore" class="explore-btn">
+                        🔍 Meer parkeerlocaties verkennen
+                    </a>
+                </div>
             </div>
         </section>
     </main>
-    <footer>
+
+    <footer role="contentinfo">
         <div class="container">
-            <p>&copy; 2025 BrusselsExplorer. Alle rechten voorbehouden.</p>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2025 BrusselsExplorer. Een project van <strong>Dalil Belahcen</strong> en <strong>Rakim Benkirane</strong> - EHB</p>
+                    <p>Data afkomstig van <a href="https://opendata.brussels.be/" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            aria-label="Brussels Open Data portal (opent in nieuw venster)">
+                        Brussels Open Data</a>
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html" aria-label="Ga naar homepage">Home</a>
+                    <a href="index.html#explore" aria-label="Ga naar verken sectie">Verken</a>
+                    <a href="favorites.html" aria-label="Ga naar favorieten pagina">Favorieten</a>
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="javascript/script.js"></script>
+
+    <!-- Scripts -->
+    <script src="javascript/favorites-script.js"></script>
+
+    <!-- Additional Styles for this page -->
+    <style>
+        /* Page specific styles */
+        .breadcrumb-section {
+            background: #f8f9fa;
+            padding: 15px 0;
+            margin-top: 80px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb {
+            background: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .breadcrumb-item {
+            color: #6c757d;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: ">";
+            margin-right: 10px;
+            color: #6c757d;
+        }
+
+        .breadcrumb-item a {
+            color: #38577C;
+            text-decoration: none;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb-item.active {
+            color: #495057;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .page-header h1 {
+            color: #38577C;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .page-description {
+            font-size: 18px;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .loading-favorites {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #38577C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .help-section {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+        }
+
+        .help-section h2 {
+            text-align: center;
+            color: #38577C;
+            margin-bottom: 30px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tip-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tip-item h3 {
+            color: #38577C;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .tip-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .back-to-explore {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            background: #38577C;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background: #2a4158;
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 20px 0;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .page-description {
+                font-size: 16px;
+            }
+
+            .help-section {
+                padding: 20px;
+                margin-top: 40px;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .explore-btn {
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .breadcrumb-section {
+                padding: 10px 0;
+            }
+
+            .breadcrumb {
+                font-size: 14px;
+            }
+        }
+
+        /* Screen reader only styles */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #38577C;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1001;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+    </style>
 </body>
 </html>

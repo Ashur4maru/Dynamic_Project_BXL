@@ -315,6 +315,15 @@ main {
     gap: var(--spacing-xs);
 }
 
+.location-details p.handicap {
+    color: var(--dark-gray);
+    font-style: italic;
+}
+
+.location-details p.handicap strong {
+    color: var(--primary-color);
+}
+
 .location-actions {
     margin-top: var(--spacing-md);
     display: flex;
@@ -482,9 +491,9 @@ main {
 .legend i {
     width: 18px;
     height: 18px;
+    float: left;
     margin-right: var(--spacing-xs);
     border-radius: 50%;
-    display: inline-block;
 }
 
 /* === Map Popup Styles === */

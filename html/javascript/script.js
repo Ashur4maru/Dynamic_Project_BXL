@@ -90,7 +90,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const capacity = location.capacity || 'Onbekend';
         const operator = location.operator_fr || location.operator_nl || 'Onbekend';
         const phone = location.contact_phone || 'Niet beschikbaar';
-        const disabled = location.disabledcapacity || location.disabled_capacity || '0';
+        
+        // Verbeterde afhandeling van handicap plaatsen
+        let disabled = 'Niet opgegeven';
+        if (location.disabledcapacity !== undefined && location.disabledcapacity !== null && location.disabledcapacity !== '') {
+            disabled = location.disabledcapacity;
+        } else if (location.disabled_capacity !== undefined && location.disabled_capacity !== null && location.disabled_capacity !== '') {
+            disabled = location.disabled_capacity;
+        } else if (location.handicapped_capacity !== undefined && location.handicapped_capacity !== null && location.handicapped_capacity !== '') {
+            disabled = location.handicapped_capacity;
+        } else if (location.pmr_capacity !== undefined && location.pmr_capacity !== null && location.pmr_capacity !== '') {
+            disabled = location.pmr_capacity;
+        }
+        
+        // Zorg ervoor dat het een nummer is
+        if (disabled !== 'Niet opgegeven' && !isNaN(disabled)) {
+            disabled = parseInt(disabled) || 0;
+        }
         
         element.innerHTML = `
             <h4>${name}</h4>
@@ -98,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="capacity"><strong>🚗</strong> ${capacity} plaatsen</p>
             <p class="operator"><strong>🏢</strong> ${operator}</p>
             <p class="phone"><strong>📞</strong> ${phone}</p>
-            <p class="handicap"><strong>♿</strong> ${disabled} handicap plaatsen</p>
+            <p class="handicap"><strong>♿</strong> ${disabled} ${disabled === 'Niet opgegeven' ? '' : 'handicap plaatsen'}</p>
             <button class="favorite-button" data-location='${JSON.stringify(location).replace(/'/g, "&apos;")}'>
                 ❤ Voeg toe aan favorieten
             </button>
@@ -206,7 +222,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const capacity = location.capacity || 'Onbekend';
         const operator = location.operator_fr || location.operator_nl || 'Onbekend';
         const phone = location.contact_phone || 'Niet beschikbaar';
-        const disabled = location.disabledcapacity || location.disabled_capacity || '0';
+        
+        // Verbeterde afhandeling van handicap plaatsen voor favorieten
+        let disabled = 'Niet opgegeven';
+        if (location.disabledcapacity !== undefined && location.disabledcapacity !== null && location.disabledcapacity !== '') {
+            disabled = location.disabledcapacity;
+        } else if (location.disabled_capacity !== undefined && location.disabled_capacity !== null && location.disabled_capacity !== '') {
+            disabled = location.disabled_capacity;
+        } else if (location.handicapped_capacity !== undefined && location.handicapped_capacity !== null && location.handicapped_capacity !== '') {
+            disabled = location.handicapped_capacity;
+        } else if (location.pmr_capacity !== undefined && location.pmr_capacity !== null && location.pmr_capacity !== '') {
+            disabled = location.pmr_capacity;
+        }
+        
+        // Zorg ervoor dat het een nummer is
+        if (disabled !== 'Niet opgegeven' && !isNaN(disabled)) {
+            disabled = parseInt(disabled) || 0;
+        }
         
         favoriteItem.innerHTML = `
             <h4>${name}</h4>
@@ -214,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="capacity"><strong>🚗</strong> ${capacity} plaatsen</p>
             <p class="operator"><strong>🏢</strong> ${operator}</p>
             <p class="phone"><strong>📞</strong> ${phone}</p>
-            <p class="handicap"><strong>♿</strong> ${disabled} handicap plaatsen</p>
+            <p class="handicap"><strong>♿</strong> ${disabled} ${disabled === 'Niet opgegeven' ? '' : 'handicap plaatsen'}</p>
             <button class="remove-favorite" data-name="${name}">
                 🗑️ Verwijder uit favorieten
             </button>
@@ -362,6 +394,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     const data = await response.json();
                     if (data.results && data.results.length > 0) {
                         console.log(`Succesvol data geladen van: ${url}`, data.results.length, 'items');
+                        
+                        // Debug: toon de structuur van de eerste item
+                        console.log('Voorbeeld data structuur:', data.results[0]);
+                        
+                        // Controleer welke velden er zijn voor handicap plaatsen
+                        const firstItem = data.results[0];
+                        console.log('Beschikbare velden in eerste item:', Object.keys(firstItem));
+                        
+                        // Zoek naar velden die handicap informatie kunnen bevatten
+                        const handicapFields = Object.keys(firstItem).filter(key => 
+                            key.toLowerCase().includes('disab') || 
+                            key.toLowerCase().includes('handicap') || 
+                            key.toLowerCase().includes('pmr') ||
+                            key.toLowerCase().includes('mobility')
+                        );
+                        console.log('Mogelijke handicap velden:', handicapFields);
+                        
                         locationsData = data.results;
                         displayLocations(locationsData);
                         dataLoaded = true;
